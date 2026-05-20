@@ -1,8 +1,7 @@
 import Header from "./components/Header";
 import Hero from "./components/Hero";
-import WhatSection from "./components/WhatSection";
-import WhoSection from "./components/WhoSection";
-import WhySection from "./components/WhySection";
+import AgencySection from "./components/AgencySection";
+import NewsSection from "./components/NewsSection";
 import ContactSection from "./components/ContactSection";
 import Footer from "./components/Footer";
 
@@ -12,9 +11,8 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
-        <WhatSection />
-        <WhoSection />
-        <WhySection />
+        <AgencySection />
+        <NewsSection />
         <ContactSection />
       </main>
       <Footer />

@@ -1,22 +1,33 @@
 export default function Footer() {
   return (
-    <footer style={{ background: "#0d1021", borderTop: "1px solid rgba(255,255,255,0.05)" }} className="py-10 px-6">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-        <p className="text-xs tracking-widest uppercase" style={{ color: "#99a9b5" }}>
+    <footer
+      style={{
+        background: "#0d1021",
+        borderTop: "1px solid rgba(255,255,255,0.04)",
+        padding: "2rem 2rem",
+      }}
+    >
+      <div
+        style={{
+          maxWidth: "1200px",
+          margin: "0 auto",
+          display: "flex",
+          flexWrap: "wrap",
+          alignItems: "center",
+          justifyContent: "space-between",
+          gap: "1rem",
+        }}
+      >
+        <p style={{ color: "rgba(255,255,255,0.3)", fontSize: "0.65rem", letterSpacing: "0.15em", textTransform: "uppercase" }}>
           © {new Date().getFullYear()} TAT Rocks. All rights reserved.
         </p>
-        <p className="text-xs" style={{ color: "#99a9b5" }}>
+        <p style={{ color: "rgba(255,255,255,0.3)", fontSize: "0.7rem" }}>
           We do geek things.{" "}
           <span style={{ color: "#00c9e3" }}>♥</span>
         </p>
-        <nav className="flex gap-6">
+        <nav style={{ display: "flex", gap: "1.5rem" }}>
           {["WHAT", "WHO", "WHY", "WHERE"].map((l) => (
-            <a
-              key={l}
-              href={`#${l.toLowerCase()}`}
-              className="text-xs tracking-widest uppercase hover:text-[#00c9e3] transition-colors"
-              style={{ color: "#99a9b5" }}
-            >
+            <a key={l} href={`#${l.toLowerCase()}`} className="footer-link">
               {l}
             </a>
           ))}
