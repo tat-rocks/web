@@ -45,9 +45,9 @@ export default function Hero() {
       <div
         style={{
           position: "absolute",
-          top: "40%",
+          top: "72%",
           left: "50%",
-          transform: `translate(-50%, -50%)`,
+          transform: `translateX(-50%)`,
           zIndex: 2,
         }}
       >
