@@ -1,67 +1,124 @@
+"use client";
+import { useState, useEffect } from "react";
+import Stars from "./Stars";
+
 export default function WhoSection() {
+  const [mx, setMx] = useState(0);
+  const [my, setMy] = useState(0);
+
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      setMx((e.clientX / window.innerWidth - 0.5) * 2);
+      setMy((e.clientY / window.innerHeight - 0.5) * 2);
+    };
+    window.addEventListener("mousemove", handler, { passive: true });
+    return () => window.removeEventListener("mousemove", handler);
+  }, []);
+
   return (
-    <section id="who" style={{ background: "#1e2235" }} className="py-24 px-6">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-        {/* Text */}
-        <div>
-          <span className="accent-line" />
-          <p className="text-[#00c9e3] text-xs font-bold tracking-[0.3em] uppercase mb-3">
-            Who We Are
-          </p>
-          <h2 className="text-3xl md:text-5xl font-black text-white mb-6 leading-tight">
-            A CREATIVE &amp; DIGITAL AGENCY ON IT SOLUTIONS
-          </h2>
-          <p className="text-base leading-relaxed mb-6" style={{ color: "#99a9b5" }}>
-            We help brands stand out from the crowd and succeed with our innovative
-            ideas and top-notch services.
-          </p>
-          <p className="text-base leading-relaxed mb-10" style={{ color: "#99a9b5" }}>
-            Years of experience in a world of different projects — strategy,
-            efficiency, speed &amp; intelligence. We are ready to integrate your
-            business with the world.
-          </p>
+    <section
+      id="who"
+      style={{
+        position: "relative",
+        minHeight: "70vh",
+        overflow: "hidden",
+        display: "flex",
+        alignItems: "center",
+      }}
+    >
+      <Stars count={50} />
 
-          <div className="grid grid-cols-3 gap-6">
-            {[
-              { num: "10+", label: "Years Experience" },
-              { num: "50+", label: "Projects Delivered" },
-              { num: "4",   label: "Countries" },
-            ].map((stat) => (
-              <div key={stat.label} className="text-center">
-                <p className="text-3xl font-black" style={{ color: "#00c9e3" }}>
-                  {stat.num}
-                </p>
-                <p className="text-xs uppercase tracking-widest mt-1" style={{ color: "#99a9b5" }}>
-                  {stat.label}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
+      {/* Flying machine — upper right */}
+      <div
+        style={{
+          position: "absolute",
+          right: "5%",
+          top: "38%",
+          zIndex: 4,
+          transform: `translate(${mx * 20}px, ${my * 14}px)`,
+          transition: "transform 0.15s ease-out",
+        }}
+      >
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="https://tat.rocks/wp-content/uploads/2021/01/flyingman.png"
+          alt=""
+          aria-hidden="true"
+          className="animate-float"
+          style={{
+            width: "clamp(180px, 22vw, 380px)",
+            height: "auto",
+            filter: "drop-shadow(0 12px 24px rgba(0,0,0,0.4))",
+            display: "block",
+          }}
+        />
+      </div>
 
-        {/* Visual */}
-        <div className="flex flex-col gap-4">
-          <div
-            className="rounded-sm p-8 text-center"
-            style={{ background: "#2c2e3d", border: "1px solid rgba(0,201,227,0.15)" }}
-          >
-            <p className="text-2xl font-black text-white mb-2">CUZ WE</p>
-            <p className="text-5xl font-black" style={{ color: "#00c9e3" }}>
-              ROCK
-            </p>
-            <p className="text-2xl font-black text-white">THE WEB</p>
-          </div>
-          <div
-            className="rounded-sm p-6"
-            style={{ background: "#2c2e3d", border: "1px solid rgba(255,255,255,0.05)" }}
-          >
-            <p className="text-sm leading-relaxed" style={{ color: "#99a9b5" }}>
-              "We are ready! We can integrate your business to the world with
-              top-notch IT solutions, creative strategies, and a team that truly
-              delivers."
-            </p>
-          </div>
-        </div>
+      {/* Text content */}
+      <div
+        style={{
+          position: "relative",
+          zIndex: 5,
+          width: "100%",
+          maxWidth: "1200px",
+          margin: "0 auto",
+          padding: "clamp(3rem, 6vw, 6rem) clamp(1.5rem, 5vw, 5rem)",
+        }}
+      >
+        <p
+          style={{
+            fontFamily: "var(--font-heading)",
+            fontWeight: 300,
+            fontSize: "clamp(1.4rem, 3.5vw, 2.8rem)",
+            color: "rgba(255,255,255,0.75)",
+            textTransform: "uppercase",
+            letterSpacing: "0.05em",
+            lineHeight: 1.1,
+            marginBottom: "0.2rem",
+          }}
+        >
+          WE ARE THE TAT
+        </p>
+        <p
+          style={{
+            fontFamily: "var(--font-heading)",
+            fontWeight: 900,
+            fontSize: "clamp(2.2rem, 6vw, 5rem)",
+            color: "white",
+            textTransform: "uppercase",
+            letterSpacing: "0.02em",
+            lineHeight: 1,
+            marginBottom: "2rem",
+          }}
+        >
+          AND WE <span style={{ color: "#00bcd4" }}>ROCK</span>
+        </p>
+
+        <h2
+          className="font-script"
+          style={{
+            fontSize: "clamp(1.6rem, 4vw, 3rem)",
+            color: "#00bcd4",
+            lineHeight: 1.25,
+            marginBottom: "1.2rem",
+          }}
+        >
+          A Creative &amp; Digital,
+          <br />
+          Agency on IT Solutions
+        </h2>
+
+        <p
+          style={{
+            color: "rgba(255,255,255,0.7)",
+            fontSize: "0.95rem",
+            lineHeight: 1.8,
+            maxWidth: "500px",
+          }}
+        >
+          We help brands stand out from the crowd and succeed with our
+          innovative ideas and top-notch services.
+        </p>
       </div>
     </section>
   );

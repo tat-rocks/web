@@ -2,21 +2,22 @@
 
 :root {
   --bg-dark: #171b2d;
-  --bg-mid: #1e2235;
-  --bg-card: #2c2e3d;
-  --accent: #00c9e3;
+  --bg-contact-outer: #2c2e3d;
+  --bg-contact-form: #171b2d;
+  --accent: #00bcd4;
+  --accent-alt: #00bcd4;
   --text-white: #ffffff;
   --text-muted: #99a9b5;
-  --font-heading: var(--font-raleway), Arial, sans-serif;
+  --font-heading: var(--font-montserrat), Arial, sans-serif;
   --font-script: var(--font-dancing), cursive;
+  --font-pacifico: var(--font-pacifico), cursive;
+  --globe-url: url("https://tat.rocks/wp-content/uploads/2020/12/littleplanet-02-1-scaled-e1608134636534.jpg");
 }
 
 @theme inline {
-  --font-sans: var(--font-raleway);
-  --color-accent: #00c9e3;
+  --font-sans: var(--font-montserrat);
+  --color-accent: #00bcd4;
   --color-bg-dark: #171b2d;
-  --color-bg-card: #2c2e3d;
-  --color-text-muted: #99a9b5;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -32,66 +33,49 @@ body {
   overflow-x: hidden;
 }
 
-/* ── Stars twinkling animation ── */
+/* ── Star animations ── */
 @keyframes twinkle {
-  0%, 100% { opacity: 0.3; transform: scale(0.8); }
-  50%       { opacity: 1;   transform: scale(1.2); }
+  0%, 100% { opacity: 0.2; transform: scale(0.8); }
+  50%       { opacity: 1;   transform: scale(1.3); }
 }
-@keyframes twinkleSlow {
-  0%, 100% { opacity: 0.2; transform: scale(0.9); }
-  50%       { opacity: 0.8; transform: scale(1.1); }
+@keyframes twinkleBig {
+  0%, 100% { opacity: 0.3; transform: scale(0.85); }
+  50%       { opacity: 1;   transform: scale(1.4); }
+}
+@keyframes spinStar {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
 }
 @keyframes float {
   0%, 100% { transform: translateY(0px) rotate(0deg); }
-  50%       { transform: translateY(-20px) rotate(2deg); }
+  50%       { transform: translateY(-18px) rotate(2deg); }
 }
 @keyframes floatBalloon {
   0%, 100% { transform: translateY(0px) rotate(-3deg); }
-  50%       { transform: translateY(-30px) rotate(3deg); }
+  50%       { transform: translateY(-28px) rotate(3deg); }
 }
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(40px); }
   to   { opacity: 1; transform: translateY(0); }
 }
-@keyframes slideWords {
-  0%,  16% { transform: translateY(0%);    }
-  20%, 36% { transform: translateY(-20%);  }
-  40%, 56% { transform: translateY(-40%);  }
-  60%, 76% { transform: translateY(-60%);  }
-  80%, 96% { transform: translateY(-80%);  }
-  100%     { transform: translateY(0%);    }
-}
-@keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 10px rgba(0,201,227,0.3); }
-  50%       { box-shadow: 0 0 30px rgba(0,201,227,0.7); }
-}
 
-.animate-fade-up      { animation: fadeInUp 0.9s ease both; }
-.animate-float        { animation: float 6s ease-in-out infinite; }
-.animate-float-balloon{ animation: floatBalloon 8s ease-in-out infinite; }
+.animate-fade-up       { animation: fadeInUp 0.9s ease both; }
+.animate-float         { animation: float 6s ease-in-out infinite; }
+.animate-float-balloon { animation: floatBalloon 8s ease-in-out infinite; }
 .delay-100 { animation-delay: 0.1s; }
 .delay-200 { animation-delay: 0.2s; }
 .delay-300 { animation-delay: 0.3s; }
 .delay-400 { animation-delay: 0.4s; }
 
-.font-script  { font-family: var(--font-script); }
-.font-heading { font-family: var(--font-heading); }
-
-/* ── Accent decorative line ── */
-.accent-line {
-  display: block;
-  width: 50px;
-  height: 3px;
-  background: var(--accent);
-  margin-bottom: 1.5rem;
-}
-.accent-line-center { margin-left: auto; margin-right: auto; }
+.font-script   { font-family: var(--font-script); }
+.font-heading  { font-family: var(--font-heading); }
+.font-pacifico { font-family: var(--font-pacifico); }
 
 /* ── Buttons ── */
 .btn-accent {
   display: inline-block;
   background: var(--accent);
-  color: #171b2d;
+  color: #0d1021;
   font-family: var(--font-heading);
   font-weight: 700;
   font-size: 0.7rem;
@@ -103,7 +87,7 @@ body {
   transition: background 0.3s, transform 0.2s;
   text-decoration: none;
 }
-.btn-accent:hover { background: #00a8bf; transform: translateY(-2px); }
+.btn-accent:hover { background: #00a0b4; transform: translateY(-2px); }
 
 .btn-outline {
   display: inline-block;
@@ -122,72 +106,43 @@ body {
 }
 .btn-outline:hover {
   background: var(--accent);
-  color: #171b2d;
+  color: #0d1021;
   transform: translateY(-2px);
-}
-
-/* ── Service card ── */
-.service-card {
-  background: rgba(44, 46, 61, 0.7);
-  border: 1px solid rgba(255,255,255,0.07);
-  backdrop-filter: blur(4px);
-  transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
-}
-.service-card:hover {
-  border-color: var(--accent);
-  transform: translateY(-5px);
-  box-shadow: 0 10px 40px rgba(0,201,227,0.1);
 }
 
 /* ── Tech logos ── */
 .tech-logo {
   filter: brightness(0) invert(1);
-  opacity: 0.6;
+  opacity: 0.55;
   transition: opacity 0.3s, transform 0.3s;
 }
 .tech-logo:hover { opacity: 1; transform: scale(1.1); }
 
 /* ── Form inputs ── */
-input, textarea, select {
+input, textarea {
   background: transparent !important;
   border: none !important;
-  border-bottom: 1px solid #5f727f !important;
+  border-bottom: 1px solid rgba(255,255,255,0.2) !important;
   color: white !important;
   outline: none;
   transition: border-color 0.3s;
   width: 100%;
-  padding: 0.6rem 0.2rem;
+  padding: 0.8rem 0.2rem;
   font-family: var(--font-heading);
-  font-size: 0.85rem;
+  font-size: 0.9rem;
 }
 input:focus, textarea:focus { border-bottom-color: var(--accent) !important; }
-input::placeholder, textarea::placeholder { color: #5f727f; }
-label { color: var(--accent); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+input::placeholder, textarea::placeholder { color: rgba(255,255,255,0.3); }
 
-/* ── Stars particles ── */
-.star {
-  position: absolute;
-  width: 3px;
-  height: 3px;
-  background: white;
-  border-radius: 50%;
-}
+/* ── Links ── */
+.social-link  { color: rgba(255,255,255,0.4); font-size: 0.65rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; text-decoration: none; transition: color 0.2s; }
+.social-link:hover { color: var(--accent); }
 
-/* ── Hover utilities (replaces JS onMouseEnter) ── */
-.hover-accent { transition: color 0.2s; }
-.hover-accent:hover { color: #00c9e3 !important; }
+.footer-link  { color: rgba(255,255,255,0.3); font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; text-decoration: none; transition: color 0.2s; }
+.footer-link:hover { color: var(--accent); }
+
+.contact-link { color: rgba(255,255,255,0.75); font-size: 0.9rem; text-decoration: none; transition: color 0.2s; }
+.contact-link:hover { color: var(--accent); }
 
 .hover-scale { transition: transform 0.2s; }
 .hover-scale:hover { transform: scale(1.08); }
-
-.service-item { color: rgba(255,255,255,0.6); font-size: 0.85rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; cursor: default; transition: color 0.3s; }
-.service-item:hover { color: #00c9e3; }
-
-.social-link { color: rgba(255,255,255,0.45); font-size: 0.65rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; text-decoration: none; transition: color 0.2s; }
-.social-link:hover { color: #00c9e3; }
-
-.footer-link { color: rgba(255,255,255,0.3); font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; text-decoration: none; transition: color 0.2s; }
-.footer-link:hover { color: #00c9e3; }
-
-.contact-link { color: rgba(255,255,255,0.7); font-size: 0.9rem; text-decoration: none; transition: color 0.2s; }
-.contact-link:hover { color: #00c9e3; }

@@ -1,3 +1,5 @@
+"use client";
+import { useState, useEffect } from "react";
 import Stars from "./Stars";
 
 const techIcons = [
@@ -13,178 +15,171 @@ const techIcons = [
 ];
 
 export default function Hero() {
+  const [mx, setMx] = useState(0);
+  const [my, setMy] = useState(0);
+
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      setMx((e.clientX / window.innerWidth - 0.5) * 2);
+      setMy((e.clientY / window.innerHeight - 0.5) * 2);
+    };
+    window.addEventListener("mousemove", handler, { passive: true });
+    return () => window.removeEventListener("mousemove", handler);
+  }, []);
+
   return (
     <section
-      id="hero"
+      id="what"
       style={{
         position: "relative",
         minHeight: "100vh",
-        background: "#171b2d",
-        overflow: "hidden",
+        backgroundColor: "transparent",
         display: "flex",
         alignItems: "center",
       }}
     >
-      {/* Stars layer */}
+      {/* Stars layer with parallax */}
       <Stars count={90} />
 
-      {/* Stars SVG overlay — the original STARTS-01-1.svg pattern */}
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src="https://tat.rocks/wp-content/uploads/2020/12/STARTS-01-1.svg"
-        alt=""
-        aria-hidden="true"
+      {/* Globe — transparent PNG, centered in hero */}
+      <div
         style={{
           position: "absolute",
-          top: 0,
-          left: 0,
-          width: "100%",
-          height: "100%",
-          objectFit: "cover",
-          opacity: 0.25,
-          pointerEvents: "none",
-          zIndex: 1,
-        }}
-      />
-
-      {/* Globe — centerpiece */}
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src="https://tat.rocks/wp-content/uploads/2020/12/littleplanet-02-1-scaled-e1608134636534.jpg"
-        alt="Globe"
-        className="animate-float"
-        style={{
-          position: "absolute",
-          right: "-5%",
           top: "50%",
-          transform: "translateY(-50%)",
-          width: "clamp(380px, 60vw, 900px)",
-          height: "auto",
-          objectFit: "cover",
-          borderRadius: "50%",
-          opacity: 0.85,
+          left: "50%",
+          transform: `translate(-50%, -42%) translate(${mx * 8}px, ${my * 5}px)`,
+          transition: "transform 0.15s ease-out",
           zIndex: 2,
-          animationDelay: "0s",
         }}
-      />
+      >
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/globe.png"
+          alt=""
+          aria-hidden="true"
+          style={{
+            width: "clamp(700px, 90vw, 1200px)",
+            height: "auto",
+            display: "block",
+          }}
+        />
+      </div>
 
-      {/* Hot air balloon — upper right */}
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src="https://tat.rocks/wp-content/uploads/2020/12/ballonvintage.png"
-        alt=""
-        aria-hidden="true"
-        className="animate-float-balloon"
+      {/* Hot air balloon */}
+      <div
         style={{
           position: "absolute",
-          right: "5%",
-          top: "2%",
-          width: "clamp(160px, 18vw, 280px)",
-          height: "auto",
+          right: "10%",
+          top: "12%",
           zIndex: 4,
-          filter: "drop-shadow(0 20px 40px rgba(0,0,0,0.5))",
+          transform: `translate(${mx * 18}px, ${my * 12}px)`,
+          transition: "transform 0.15s ease-out",
         }}
-      />
+      >
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="https://tat.rocks/wp-content/uploads/2020/12/ballonvintage.png"
+          alt=""
+          aria-hidden="true"
+          className="animate-float-balloon"
+          style={{
+            width: "clamp(140px, 16vw, 260px)",
+            height: "auto",
+            filter: "drop-shadow(0 16px 32px rgba(0,0,0,0.45))",
+            display: "block",
+          }}
+        />
+      </div>
 
       {/* Flying man */}
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src="https://tat.rocks/wp-content/uploads/2021/01/flyingman.png"
-        alt=""
-        aria-hidden="true"
-        className="animate-float"
+      <div
         style={{
           position: "absolute",
-          right: "15%",
-          bottom: "8%",
-          width: "clamp(120px, 14vw, 220px)",
-          height: "auto",
+          right: "8%",
+          top: "60%",
           zIndex: 4,
-          animationDelay: "1s",
-          filter: "drop-shadow(0 10px 20px rgba(0,0,0,0.4))",
+          transform: `translate(${mx * 12}px, ${my * 8}px)`,
+          transition: "transform 0.15s ease-out",
         }}
-      />
+      >
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="https://tat.rocks/wp-content/uploads/2021/01/flyingman.png"
+          alt=""
+          aria-hidden="true"
+          className="animate-float"
+          style={{
+            width: "clamp(110px, 13vw, 210px)",
+            height: "auto",
+            filter: "drop-shadow(0 10px 20px rgba(0,0,0,0.4))",
+            display: "block",
+            animationDelay: "1s",
+          }}
+        />
+      </div>
 
       {/* Content */}
       <div
         style={{
           position: "relative",
           zIndex: 5,
-          maxWidth: "700px",
-          padding: "0 2rem 0 clamp(1.5rem, 6vw, 6rem)",
-          paddingTop: "100px",
-          paddingBottom: "60px",
+          width: "100%",
+          maxWidth: "1200px",
+          margin: "0 auto",
+          padding: "120px clamp(1.5rem, 5vw, 5rem) 60px",
         }}
       >
-        {/* TAT Rocks label */}
-        <p
+        <h1
           className="animate-fade-up"
           style={{
-            color: "#00c9e3",
-            fontSize: "0.7rem",
-            fontWeight: 800,
-            letterSpacing: "0.35em",
-            textTransform: "uppercase",
-            marginBottom: "1rem",
-          }}
-        >
-          TAT ROCKS
-        </p>
-
-        {/* Main headline */}
-        <h1
-          className="animate-fade-up delay-100"
-          style={{
             fontFamily: "var(--font-heading)",
-            fontWeight: 900,
+            fontWeight: 200,
             fontSize: "clamp(2rem, 5vw, 3.8rem)",
             lineHeight: 1.05,
             color: "white",
-            marginBottom: "0.3rem",
+            marginBottom: "0",
             textTransform: "uppercase",
+            letterSpacing: "0.02em",
           }}
         >
           WE MAKE YOUR{" "}
-          <span style={{ color: "#00c9e3" }}>IT DREAMS</span>
+          <strong style={{ fontWeight: 900, color: "white" }}>IT DREAMS</strong>
         </h1>
         <h1
           className="animate-fade-up delay-100"
           style={{
             fontFamily: "var(--font-heading)",
-            fontWeight: 900,
+            fontWeight: 200,
             fontSize: "clamp(2rem, 5vw, 3.8rem)",
             lineHeight: 1.05,
             color: "white",
-            marginBottom: "1.2rem",
+            marginBottom: "1.4rem",
             textTransform: "uppercase",
+            letterSpacing: "0.02em",
           }}
         >
           COME TRUE
         </h1>
 
         <p
-          className="animate-fade-up delay-200"
-          style={{ color: "rgba(255,255,255,0.75)", fontSize: "1rem", fontStyle: "italic", marginBottom: "0.5rem" }}
+          className="animate-fade-up delay-100"
+          style={{ color: "rgba(255,255,255,0.9)", fontSize: "1.1rem", fontStyle: "italic", marginBottom: "1rem" }}
         >
           Unify your business
         </p>
         <p
           className="animate-fade-up delay-200"
-          style={{ color: "rgba(255,255,255,0.6)", fontSize: "0.85rem", lineHeight: 1.7, maxWidth: "440px", marginBottom: "0.4rem" }}
+          style={{ color: "rgba(255,255,255,0.7)", fontSize: "0.9rem", lineHeight: 1.9, maxWidth: "540px", marginBottom: "0" }}
         >
-          TAT offers a service of quality and time delivery beyond expectations.
-        </p>
-        <p
-          className="animate-fade-up delay-200"
-          style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.85rem", marginBottom: "2rem" }}
-        >
-          A team of professional developers ready to build what you need.
+          TAT offers a service of quality and time delivery beyond expectations.<br />
+          A team of professional developers ready to build what you need.<br />
+          IT Solutions is here to facilitate your job and integrate your system.
         </p>
 
         {/* Tech icons */}
         <div
           className="animate-fade-up delay-300"
-          style={{ display: "flex", flexWrap: "wrap", gap: "0.8rem", alignItems: "center", marginBottom: "2.2rem" }}
+          style={{ display: "flex", flexWrap: "wrap", gap: "1rem", alignItems: "center", margin: "2rem 0 0" }}
         >
           {techIcons.map((t) => (
             // eslint-disable-next-line @next/next/no-img-element
@@ -193,42 +188,11 @@ export default function Hero() {
               src={t.src}
               alt={t.name}
               className="tech-logo"
-              style={{ height: "28px", width: "auto" }}
+              style={{ height: "30px", width: "auto" }}
             />
           ))}
         </div>
-
-        {/* CTAs */}
-        <div className="animate-fade-up delay-400" style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
-          <a href="#what" className="btn-accent">WHAT WE DO</a>
-          <a href="#contact" className="btn-outline">GET IN TOUCH</a>
-        </div>
-
-        {/* Bottom tagline */}
-        <div style={{ marginTop: "3rem" }} className="animate-fade-up delay-400">
-          <p style={{ color: "rgba(255,255,255,0.45)", fontSize: "0.8rem", fontWeight: 600, letterSpacing: "0.15em", textTransform: "uppercase" }}>
-            WE ARE THE TAT
-          </p>
-          <p style={{ color: "white", fontSize: "1.4rem", fontWeight: 900, letterSpacing: "0.1em", textTransform: "uppercase" }}>
-            AND WE <span style={{ color: "#00c9e3" }}>ROCK</span>
-          </p>
-        </div>
       </div>
-
-      {/* Bottom gradient fade */}
-      <div
-        aria-hidden="true"
-        style={{
-          position: "absolute",
-          bottom: 0,
-          left: 0,
-          right: 0,
-          height: "120px",
-          background: "linear-gradient(to bottom, transparent, #171b2d)",
-          zIndex: 6,
-          pointerEvents: "none",
-        }}
-      />
     </section>
   );
 }

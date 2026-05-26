@@ -23,7 +23,7 @@ export default function Footer() {
         </p>
         <p style={{ color: "rgba(255,255,255,0.3)", fontSize: "0.7rem" }}>
           We do geek things.{" "}
-          <span style={{ color: "#00c9e3" }}>♥</span>
+          <span style={{ color: "#00bcd4" }}>♥</span>
         </p>
         <nav style={{ display: "flex", gap: "1.5rem" }}>
           {["WHAT", "WHO", "WHY", "WHERE"].map((l) => (

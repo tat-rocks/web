@@ -25,7 +25,7 @@ export default function ContactSection() {
   return (
     <section
       id="contact"
-      style={{ background: "#171b2d", paddingTop: "0" }}
+      style={{ background: "#2c2e3d" }}
     >
       <div
         id="where"
@@ -39,8 +39,8 @@ export default function ContactSection() {
         {/* Left — form */}
         <div
           style={{
-            background: "#12151f",
-            padding: "clamp(2rem, 6vw, 5rem)",
+            background: "#171b2d",
+            padding: "clamp(2.5rem, 6vw, 5.5rem)",
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
@@ -48,7 +48,7 @@ export default function ContactSection() {
         >
           {sent ? (
             <div style={{ textAlign: "center", padding: "2rem 0" }}>
-              <p style={{ color: "#00c9e3", fontSize: "1.2rem", fontWeight: 700, marginBottom: "0.5rem" }}>
+              <p style={{ color: "#00bcd4", fontSize: "1.2rem", fontWeight: 700, marginBottom: "0.5rem" }}>
                 Message sent!
               </p>
               <p style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.85rem" }}>
@@ -56,18 +56,24 @@ export default function ContactSection() {
               </p>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "1.8rem" }}>
+            <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "2rem" }}>
               <div>
-                <label>Name *</label>
-                <input type="text" name="name" placeholder="" required />
+                <p style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.8rem", marginBottom: "0.4rem" }}>
+                  Name*
+                </p>
+                <input type="text" name="name" required />
               </div>
               <div>
-                <label>Email *</label>
-                <input type="email" name="email" placeholder="" required />
+                <p style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.8rem", marginBottom: "0.4rem" }}>
+                  Email*
+                </p>
+                <input type="email" name="email" required />
               </div>
               <div>
-                <label>Message</label>
-                <textarea name="message" rows={5} placeholder="" />
+                <p style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.8rem", marginBottom: "0.4rem" }}>
+                  Message
+                </p>
+                <textarea name="message" rows={5} style={{ resize: "vertical" }} />
               </div>
               <div>
                 <button
@@ -86,42 +92,33 @@ export default function ContactSection() {
         {/* Right — contact info */}
         <div
           style={{
-            background: "#1a1e30",
-            padding: "clamp(2rem, 6vw, 5rem)",
+            background: "#2c2e3d",
+            padding: "clamp(2.5rem, 6vw, 5.5rem)",
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
           }}
         >
-          <p
-            style={{
-              color: "#00c9e3",
-              fontSize: "0.65rem",
-              fontWeight: 800,
-              letterSpacing: "0.3em",
-              textTransform: "uppercase",
-              marginBottom: "0.5rem",
-            }}
-          >
+          <p style={{ color: "#00bcd4", fontSize: "0.65rem", fontWeight: 800, letterSpacing: "0.3em", textTransform: "uppercase", marginBottom: "0.5rem" }}>
             CONTACT US
           </p>
           <h2
             style={{
               fontFamily: "var(--font-heading)",
               fontWeight: 900,
-              fontSize: "clamp(1.8rem, 4vw, 3rem)",
+              fontSize: "clamp(2.8rem, 6vw, 5rem)",
               color: "white",
               lineHeight: 1.1,
-              marginBottom: "0.2rem",
+              marginBottom: "0",
             }}
           >
             GET IN{" "}
-            <span style={{ color: "#00c9e3" }}>TOUCH</span>
+            <span style={{ color: "#00bcd4" }}>TOUCH</span>
           </h2>
 
-          <div style={{ marginTop: "2.5rem", display: "flex", flexDirection: "column", gap: "1.5rem" }}>
+          <div style={{ marginTop: "2.5rem", display: "flex", flexDirection: "column", gap: "1.8rem" }}>
             <div>
-              <p style={{ color: "#00c9e3", fontSize: "0.65rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: "0.3rem" }}>
+              <p style={{ color: "#00bcd4", fontSize: "0.6rem", fontWeight: 700, letterSpacing: "0.25em", textTransform: "uppercase", marginBottom: "0.4rem" }}>
                 Email
               </p>
               <a href="mailto:hello@the.tat.rocks" className="contact-link">
@@ -129,7 +126,7 @@ export default function ContactSection() {
               </a>
             </div>
             <div>
-              <p style={{ color: "#00c9e3", fontSize: "0.65rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: "0.3rem" }}>
+              <p style={{ color: "#00bcd4", fontSize: "0.6rem", fontWeight: 700, letterSpacing: "0.25em", textTransform: "uppercase", marginBottom: "0.4rem" }}>
                 Upwork
               </p>
               <a
@@ -142,7 +139,7 @@ export default function ContactSection() {
               </a>
             </div>
             <div>
-              <p style={{ color: "#00c9e3", fontSize: "0.65rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: "0.6rem" }}>
+              <p style={{ color: "#00bcd4", fontSize: "0.6rem", fontWeight: 700, letterSpacing: "0.25em", textTransform: "uppercase", marginBottom: "0.7rem" }}>
                 Follow Us
               </p>
               <div style={{ display: "flex", gap: "1.2rem", flexWrap: "wrap" }}>
