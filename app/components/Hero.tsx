@@ -38,17 +38,16 @@ export default function Hero() {
         alignItems: "center",
       }}
     >
-      {/* Stars layer with parallax */}
-      <Stars count={90} />
+      {/* Stars layer with parallax — move opposite to mouse */}
+      <Stars count={90} style={{ transform: `translate(${mx * -8}px, ${my * -5}px)` }} />
 
-      {/* Globe — transparent PNG, centered in hero */}
+      {/* Globe — transparent PNG, lower position, no parallax */}
       <div
         style={{
           position: "absolute",
-          top: "50%",
+          top: "65%",
           left: "50%",
-          transform: `translate(-50%, -42%) translate(${mx * 8}px, ${my * 5}px)`,
-          transition: "transform 0.15s ease-out",
+          transform: `translate(-50%, -50%)`,
           zIndex: 2,
         }}
       >

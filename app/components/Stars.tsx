@@ -83,7 +83,7 @@ export default function Stars({ count = 80, style }: Props) {
         pointerEvents: "none",
         overflow: "hidden",
         zIndex: 1,
-        transition: "transform 0.1s ease-out",
+        transition: "transform 0.3s ease-out",
         ...style,
       }}
     />
